@@ -13,9 +13,12 @@ let pressure = document.querySelector('#pressure');
 let visibility = document.querySelector('#visibility');
 let hourlycast = document.querySelector('#hourly-forecast');
 
+
+getweather();
+forecast();
+
 function fetchlocation(){
    city = searchbox.value;
-   console.log(city);
    getweather();
    forecast();
 }
@@ -23,7 +26,6 @@ function fetchlocation(){
 searchbox.addEventListener('keydown',(event)=>{
   if(event.key=="Enter"){
   city = searchbox.value;
-   console.log(city);
    getweather();
    forecast();
   }
@@ -35,7 +37,6 @@ async function getweather(){
   try {
     const response = await fetch(url);
     
-    // Check if the city was found or if the API key is active
     if (!response.ok) {
       throw new Error(`City not found (Status: ${response.status})`);
     }
@@ -61,15 +62,12 @@ async function getweather(){
     visibility.textContent=`${(data.visibility)/1000} km`;
 
     console.log(data.weather[0].main);
-    return data;
-    // Log the data to see all available properties in your console
+
   } catch (error) {
     console.error("Error fetching data:", error.message);
   }
 }
 
-getweather();
-forecast();
 async function forecast(){
 
     const url2=`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
@@ -99,7 +97,8 @@ async function forecast(){
               return "cloud";
             }
         }
-            const icon =geticon();
+
+         const icon =geticon();
             
          const newdiv=document.createElement('div');
          newdiv.className="border border-white h-full w-25 rounded-xl flex flex-col items-center pt-2 overflow-y-hidden";
@@ -109,9 +108,9 @@ async function forecast(){
             <span class=" text-xl font-bold">${tempmain}°C</span>
             <span class="text-base text-center">${weather}</span>
          `;
+
          hourlycast.appendChild(newdiv);
          console.log(icon);
      });
 }
-
 
