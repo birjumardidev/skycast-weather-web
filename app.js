@@ -123,7 +123,7 @@ async function forecast() {
 
     const newdiv = document.createElement("div");
     newdiv.className =
-      "border border-white h-full w-25 rounded-xl flex flex-col items-center pt-2 overflow-y-hidden";
+      "border border-white/60 h-full w-25 rounded-xl flex flex-col items-center pt-2 overflow-y-hidden";
     newdiv.innerHTML = `
               <span class="text-xl">${time}</span>
             <span class="text-2xl"><i class="fa-solid fa-${icon}"></i></span>
