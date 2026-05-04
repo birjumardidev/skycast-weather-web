@@ -1,81 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skycast</title>
-       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body class="h-screen w-full bg-[url('bg-image.jpg')] bg-cover bg-no-repeat overflow-hidden">
-
-    <header class="flex h-18 w-full items-center justify-between text-white px-[5vw]">
-         <div class="text-3xl font-bold flex gap-2 drop-shadow-lg">
-            <span><i class="fa-regular fa-cloud"></i></span><span class="hidden md:block lg:block">SKYCAST</span>
-         </div>
-         <div class="h-10 flex items-center">
-            <input id="input-city" type="search" placeholder="Search city" class=" h-full border-y border-l border-white rounded-l-xl pl-3 w-[40vw] md:w-[30vw] shadow-lg outline-none bg-sky/10 focus:bg-sky/20">
-            <button onclick="fetchlocation()" class=" h-full  w-[10vw] lg:w-[5vw] border-y border-r border-white text-xl flex items-center justify-center rounded-r-2xl shadow-lg bg-sky/10 hover:cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-         <div class="text-2xl flex gap-5 items-center">
-            <span><i class="fa-solid fa-gear"></i></span>
-            <span class="bg-slate-600 p-1 rounded-4xl h-10 w-10 text-center shadow-lg">JS</span>
-         </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body
+    class="h-screen w-full bg-[url('images/images/bg-image.jpg')] bg-cover bg-no-repeat overflow-hidden"
+  >
+    <header
+      class="flex h-18 w-full items-center justify-between text-white px-[5vw]"
+    >
+      <div class="text-3xl font-bold flex gap-2 drop-shadow-lg">
+        <span><i class="fa-regular fa-cloud"></i></span
+        ><span class="hidden md:block lg:block">SKYCAST</span>
+      </div>
+      <div class="h-10 flex items-center">
+        <input
+          id="input-city"
+          type="search"
+          placeholder="Search city"
+          class="h-full border-y border-l border-white rounded-l-xl pl-3 w-[40vw] md:w-[30vw] shadow-lg outline-none bg-sky/10 focus:bg-sky/20"
+        />
+        <button
+          onclick="fetchlocation()"
+          class="h-full w-[10vw] lg:w-[5vw] border-y border-r border-white text-xl flex items-center justify-center rounded-r-2xl shadow-lg bg-sky/10 hover:cursor-pointer"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+      <div class="text-2xl flex gap-5 items-center">
+        <span><i class="fa-solid fa-gear"></i></span>
+        <span
+          class="bg-slate-600 p-1 rounded-4xl h-10 w-10 text-center shadow-lg"
+          >JS</span
+        >
+      </div>
     </header>
 
-   <!-- city section -->
-  <section class="flex text-white items-center justify-between px-[5vw] lg:px-[15vw] md:px-[5vw] mt-15">
-    <div class="flex flex-col gap-2 drop-shadow-lg">
-        <span id="location" class="text-3xl lg:text-7xl md:text-6xl font-bold ">San Francisco,</span>
+    <!-- city section -->
+    <section
+      class="flex text-white items-center justify-between px-[5vw] lg:px-[15vw] md:px-[5vw] mt-15"
+    >
+      <div class="flex flex-col gap-2 drop-shadow-lg">
+        <span id="location" class="text-3xl lg:text-7xl md:text-6xl font-bold"
+          >San Francisco,</span
+        >
         <span id="weather" class="text-xl md:text-4xl pl-5">Clear</span>
-    </div>
-    <div id="city-weather-icon" class="hidden md:block text-[7vw] drop-shadow-lg">
+      </div>
+      <div
+        id="city-weather-icon"
+        class="hidden md:block text-[7vw] drop-shadow-lg"
+      >
         <!-- icon change using js -->
-    </div>
-    <div class="flex flex-col text-right gap-2 drop-shadow-lg">
-        <span id="temp" class="text-4xl lg:text-7xl md:text-5xl font-bold">18'C</span>
+      </div>
+      <div class="flex flex-col text-right gap-2 drop-shadow-lg">
+        <span id="temp" class="text-4xl lg:text-7xl md:text-5xl font-bold"
+          >18'C</span
+        >
         <span id="feel" class="md:text-2xl font-bold">Feel:17'C</span>
-        <div class="lg:text-2xl md:text-xl  font-bold"><span id="low">Low:14'C</span>/<span id="high">High:19'C</span></div>
-    </div>
-  </section>
+        <div class="lg:text-2xl md:text-xl font-bold">
+          <span id="low">Low:14'C</span>/<span id="high">High:19'C</span>
+        </div>
+      </div>
+    </section>
 
-  <!-- city highlight section -->
-  <section class="w-full h-100 flex flex-col items-center pt-15 lg:pt-10 md:pt-20 text-white">
-     <div class="h-20 w-[90vw] lg:w-[70vw] md:w-[80vw] h-100">
+    <!-- city highlight section -->
+    <section
+      class="w-full h-100 flex flex-col items-center pt-15 lg:pt-10 md:pt-20 text-white"
+    >
+      <div class="h-20 w-[90vw] lg:w-[70vw] md:w-[80vw] h-100">
         <span class="text-2xl font-bold drop-shadow-lg">Today Highlight</span>
 
         <!-- top containar -->
-        <div class="h-50 w-full bg-black/40 mt-5 px-3 py-2 border border-white rounded-xl">
-           <span class="text-xl font-bold drop-shadow-xl">Hourly Forecast</span>
-           <div id="hourly-forecast" class="w-full h-34 mt-2 flex [&_div]:flex-shrink-0 gap-3 overflow-x-auto [scrollbar-width:none]">
-                <!-- innerHtml by js -->
-           </div>
-        </div>
-         
-        <!-- bottom containar -->
-          <div class="h-25 w-full mt-3 px-0 md:px-10 flex gap-2 md:gap-8 justify-center [&_div]:p-2 [&_div]:pb-5 [&_div]:flex [&_div]:justify-between [&_div]:flex-col [&_div]:text-lg [&_div]:items-center [&_div]:border [&_div]:h-full [&_div]:border-white [&_div]:w-28 [&_div]:bg-black/40 [&_div]:rounded-xl">
-            <div class="">
-                <span>Wind</span>
-                <span id="wind" class="text-basef text-center ">NW 14km/h</span>
-            </div>
-            <div class="">
-                <span>Humidity</span>
-                <span id="humidity" class="text-xl">62%</span>
-            </div>
-            <div class="">
-                <span>Pressure</span>
-                <span id="pressure" class="text-md ">1016 hPa</span>
-            </div>
-            <div class="">
-                <span>Visibility</span>
-                <span id="visibility" class="text-xl ">16 km</span>
-            </div>
-
+        <div
+          class="h-50 w-full bg-black/40 mt-5 px-3 py-2 border border-white rounded-xl"
+        >
+          <span class="text-xl font-bold drop-shadow-xl">Hourly Forecast</span>
+          <div
+            id="hourly-forecast"
+            class="w-full h-34 mt-2 flex [&_div]:flex-shrink-0 gap-3 overflow-x-auto [scrollbar-width:none]"
+          >
+            <!-- innerHtml by js -->
           </div>
-     </div>
-  </section>
+        </div>
 
+        <!-- bottom containar -->
+        <div
+          class="h-25 w-full mt-3 px-0 md:px-10 flex gap-2 md:gap-8 justify-center [&_div]:p-2 [&_div]:pb-5 [&_div]:flex [&_div]:justify-between [&_div]:flex-col [&_div]:text-lg [&_div]:items-center [&_div]:border [&_div]:h-full [&_div]:border-white [&_div]:w-28 [&_div]:bg-black/40 [&_div]:rounded-xl"
+        >
+          <div class="">
+            <span>Wind</span>
+            <span id="wind" class="text-basef text-center">NW 14km/h</span>
+          </div>
+          <div class="">
+            <span>Humidity</span>
+            <span id="humidity" class="text-xl">62%</span>
+          </div>
+          <div class="">
+            <span>Pressure</span>
+            <span id="pressure" class="text-md">1016 hPa</span>
+          </div>
+          <div class="">
+            <span>Visibility</span>
+            <span id="visibility" class="text-xl">16 km</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <script src="app.js"></script>
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>
