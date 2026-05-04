@@ -1,6 +1,9 @@
 const apiKey = "ee62e02b5322146a93d7a1174876816f";
 const searchbox = document.querySelector('#input-city');
-let city ="Delhi";
+const mainicon = document.querySelector("#city-weather-icon");
+const bgimage = document.body;
+
+let city ="jamshedpur";
 let locationName = document.querySelector('#location');
 let weather = document.querySelector('#weather');
 let temp = document.querySelector('#temp');
@@ -61,7 +64,36 @@ async function getweather(){
     humidity.textContent=`${data.main.humidity}%`;
     visibility.textContent=`${(data.visibility)/1000} km`;
 
-    console.log(data.weather[0].main);
+
+    const cityweather =(data.weather[0].main);
+    console.log(cityweather);
+
+            function geticon (){
+            if(cityweather=="Rain"){
+
+             bgimage.className="h-screen w-full bg-[url('bg-image2.jpg')] bg-cover overflow-hidden";
+              return "cloud-showers-heavy";
+            }
+            else if(cityweather == "Clouds"){
+              bgimage.className="h-screen w-full bg-[url('bg-image3.jpg')] bg-cover overflow-hidden";
+              return "cloud";
+            }
+            else if(cityweather == "Clear"){
+              bgimage.className="h-screen w-full bg-[url('bg-image.jpg')] bg-cover overflow-hidden";
+              return "sun";
+            }
+            else {
+              bgimage.className="h-screen w-full bg-[url('bg-image4.jpg')] bg-cover overflow-hidden";
+              return "cloud";
+            }
+        }
+
+         const icon =geticon();
+            
+           mainicon.innerHTML=`
+                  <span><i class="fa-solid fa-${icon}"></i></span></span>
+        `;
+
 
   } catch (error) {
     console.error("Error fetching data:", error.message);
@@ -110,7 +142,7 @@ async function forecast(){
          `;
 
          hourlycast.appendChild(newdiv);
-         console.log(icon);
+        
      });
 }
 
